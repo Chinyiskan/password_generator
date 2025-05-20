@@ -13,30 +13,21 @@ largo = int(input("Escoje una opción: "))
 password = []
 
 if largo == 1:
-    for simbolo in range(7):
-        aleatorio = random.choice(simbolos)
-        password.append(aleatorio)
-        password_result =''.join(password)
+    cantidad = 7
 
 elif largo == 2:
-    for simbolo in range(11):
-        aleatorio = random.choice(simbolos)
-        password.append(aleatorio)
-        password_result =''.join(password)
+    cantidad = 11
 
 elif largo == 3:
-    for simbolo in range(20):
-        aleatorio = random.choice(simbolos)
-        password.append(aleatorio)
-        password_result =''.join(password)
+    cantidad = 20
 
 elif largo == 4:
-    usuario = int(input("Que tan larga quieres la contraseña? (digita el número): "))
-    for simbolo in range(usuario):
-        aleatorio = random.choice(simbolos)
-        password.append(aleatorio)
-        password_result =''.join(password)
+    cantidad = int(input("Que tan larga quieres la contraseña? (digita el número): "))
+
 else:
     print("Lo sentimos opción no válida 😣")
+    exit()
 
-print("Tu contraseña es 🤩: ", password_result)
+password = ''.join(random.choice(simbolos) for _ in range(cantidad))
+
+print("Tu contraseña es 🤩: ", password)
