@@ -1,33 +1,50 @@
 import random
+import string
 
-simbolos = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","w","x","y","z","-","/",".",";","*","@","#","!","&","%","$","+","?","^","A","B","C","D","E",'F',"G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","W","X","Y","Z","(",")","<",">","1","2","3","4","5","6","7","8","9","0"]
+# Lista de símbolos seguros y variados
+simbolos = list(string.ascii_letters + string.digits + "-/.*@#!&%$+?^()<>;ñÑ")
 
+
+# Menú de opciones
 print("¿De que largo quieres tu contraseña?: ")
 print("1) Corta / poco segura 🥱")
 print("2) Mediana / moderadamente segura 🥸")
 print("3) Larga / muy segura 🔒")
 print("4) Personalizada: 🤯")
 
-largo = int(input("Escoje una opción: "))
-
-password = []
-
-if largo == 1:
-    cantidad = 7
-
-elif largo == 2:
-    cantidad = 11
-
-elif largo == 3:
-    cantidad = 20
-
-elif largo == 4:
-    cantidad = int(input("Que tan larga quieres la contraseña? (digita el número): "))
-
-else:
-    print("Lo sentimos opción no válida 😣")
+# Validar entrada
+try:
+    opcion = int(input("Escoge una opción (1-4): "))
+except ValueError:
+    print("❌ Debes ingresar un número.")
     exit()
 
+# Validar rango
+if opcion not in [1,2,3,4]:
+    print("❌ Opción no válida.")
+    exit()
+
+# Definir longitud
+if opcion == 1:
+    cantidad = 7
+
+elif opcion == 2:
+    cantidad = 11
+
+elif opcion == 3:
+    cantidad = 20
+
+else:
+    try:
+        cantidad = int(input("¿Qué tan larga quieres la contraseña?: "))
+        if cantidad <= 0:
+            print("❌ El número debe ser mayor a cero.")
+            exit()
+    except ValueError:
+        print("❌ Debes ingresar un número válido.")
+        exit()
+
+# Generador contraseña
 #comprensión de listas
 password = ''.join(random.choice(simbolos) for _ in range(cantidad))
 
