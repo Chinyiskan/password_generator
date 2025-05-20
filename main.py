@@ -28,6 +28,7 @@ else:
     print("Lo sentimos opción no válida 😣")
     exit()
 
+#comprensión de listas
 password = ''.join(random.choice(simbolos) for _ in range(cantidad))
 
 print("Tu contraseña es 🤩: ", password)
